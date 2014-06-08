@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>HTML5 Canvas & facebook</title>
+    <meta name="description" content=" ">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<style>
+    #canvas {border: 3px solid grey;}
+    </style>
+</head>
+
+<body>
+    <section id="main">
+        <div id="if-not-logged-in">
+            <h2>Please login to use this app :) </h2>
+            <div id="my-login-control" style="display:bolck">
+                <button id="my-login-button" type="button">Login with Facebook</button>
+            </div>
+        </div>
+        <div id="if-logged-in" style="display:none">
+            <h2>This is a HTML5 Canvas Pages with Facebook</h2>
+            <h4>This is Your Facebook Profile Picture:</h4>
+            <img id="preview" src=" " crossorigin="Anonymous " alt="">
+            <h4>Edit your Facebook Profile Picture here:</h4>
+            <canvas width="540" height="540" id="canvas"></canvas>
+        </div>
+    </section>
+    <div id="customerized-text" class="inputtext" style="width:600px; margin:0 auto; display:none">
+        <label for="inputed">輸入客製化文字：
+            <textarea name="inputed" maxlength="6" id="inputed" placeholder="限輸6字"></textarea><!-- 提供使用者輸入文字欄-->
+        </label>
+        <br>
+        <button id="sentimg" onClick="PostImageToFacebook()">Post to Facebook</button><!-- 傳送按鈕-->
+    </div>
+    <div class="info"></div><!-- 訊息欄位-->
+
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+
+</html>
+
+
