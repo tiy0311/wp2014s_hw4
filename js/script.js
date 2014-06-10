@@ -31,11 +31,11 @@ FB.getLoginStatus(function(response) {
 
         // get access token
         ACCESS_TOKEN=response.authResponse.accessToken;
-        console.log('ACCESS_TOKEN: '+ACCESS_TOKEN);
+        //console.log('ACCESS_TOKEN: '+ACCESS_TOKEN);
 
             // get user id
         userid=response.authResponse.userID;
-        console.log('userid: '+userid);
+        //console.log('userid: '+userid);
 
         //呼叫api把圖片放到#preview IMG tag 內
         FB.api('/me/picture?width=150', function(response) {
