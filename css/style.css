@@ -42,6 +42,10 @@ body {
     line-height: 13px;
 }
 
+#preview{
+    max-width: 360px;
+    max-height: 360px;
+}
 
 
 /*

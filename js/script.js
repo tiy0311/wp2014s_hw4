@@ -9,7 +9,7 @@ window.fbAsyncInit = function () {//facebook init
     
 //輸入基本的Facebook init的狀態，與Facebook 連接，包括APP ID的設定
     FB.init({
-        appId : '245512675613775',                    // App ID from the app dashboard  // wp2014s_hw4:245512675613775  // Lab:699947756683654
+        appId : '699947756683654',                    // App ID from the app dashboard  // wp2014s_hw4:245512675613775  // Lab:699947756683654
         cookie  : true,                                 // Allowed server-side to fetch fb auth cookie
         status  : true,                                 // Check Facebook Login status
         xfbml   : true,                                 // Look for social plugins on the page
@@ -73,12 +73,8 @@ FB.getLoginStatus(function(response) {
 	ctx.fillText("Please click and move your mouse here in the block :)", 30, 270); //設定預設的開始畫面
     var img = new Image(); // 新增圖像1
     img.src = "img/overlay.png"; //圖像路徑（路徑自己設，且自己加入想要的圖層）
-	var img2 = new Image(); //新增圖像2
-	img2.src = "img/overlayback.png" //圖像路徑
 	var img3 = new Image();//新增圖像3
 	img3.src = "img/typography.png"//圖像路徑
-	
-	
 
 	//宣告基本變數
     var canvas=document.getElementById("canvas"); //宣告變數找到canvas標籤
@@ -127,6 +123,9 @@ FB.getLoginStatus(function(response) {
 			ctx.drawImage(img3,canMouseX-128/2,canMouseY-120/2); //劃入img3，並根據你的滑鼠游標移動，你可以自行更換想要移動的圖層，數值會因XY軸向有所不同
 			ctx.drawImage(img2,0,0); //劃入img2
             */
+
+            var img2 = new Image(); //新增圖像2
+            img2.src = $("#pattern option:selected").val(); //圖像路徑
 
             ctx.drawImage(profileIMG,canMouseX-550,canMouseY-250);
             ctx.drawImage(img3,200,400);    // img3: typoframe
@@ -227,6 +226,61 @@ function dataURItoBlob(dataURI) {
     });
 };
 
+function GetAlbum(){
+    console.log("click on GetAlbum");
+    $("#get_album_btn").remove();
+    FB.api("/me/albums?feilds=id,name,count", function(response) {
+        console.log("albums:");
+        console.log(response);
+        for(var i=0; i<response.data.length; i++){
+            var Album_id = response.data[i].id;
+            var Album_name = response.data[i].name;
+            $("#album").append('<option id="album-id" value="' + Album_id +'" >' + Album_name + '</option>');
+        }
+    });
+};
 
+$("#album").change(function(){
+    $("#photo").html("");
+    console.log(this.options[this.selectedIndex]);  // 把選擇的<option>album資訊傳下來～
+    var selected_album_id = this.options[this.selectedIndex].value;
+    FB.api("/" + selected_album_id + "/photos",function(response){
+        console.log("photos:");
+        console.log(response);
+        for(var j=0; j<response.data.length; j++){
+            var Photo_message = response.data[j].name;
+            var Photo_id = response.data[j].id;
+            $("#photo").append('<option id="photo-id" value="' + Photo_id +'" >' + Photo_message + '</option>');
+        }
+    });
+});
+
+$("#photo").change(function(){
+    $("#likes-count").html("");
+    $("#photo-message").html("");
+    console.log(this.options[this.selectedIndex].value);  // 把選擇的<option>photo資訊傳下來～
+    var selected_photo_id = this.options[this.selectedIndex].value;
+    FB.api("/" + selected_photo_id,function(response){
+        console.log("photo-info:");
+        console.log(response);
+
+        var photo_url = response.source;
+        var photo_message = response.name;
+        var photo_likes = response.likes;
+        console.log("likes:");
+        console.log(photo_likes);
+
+        if(photo_likes != null){
+            photo_likes = response.likes.data.length;
+        } else {
+            photo_likes = 0;
+        }
+        console.log("likes: "+ photo_likes);
+
+        $("#preview").attr("src",photo_url);
+        $("#likes-count").append("Get "+ photo_likes +" likes");
+        $("#photo-message").append(photo_message);
+    });
+});
 
 

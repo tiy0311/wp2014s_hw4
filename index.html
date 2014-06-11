@@ -5,6 +5,10 @@
     <meta charset="utf-8">
 
     <title>HTML5 Canvas & facebook</title>
+    <meta property="og:title" content="HTML5 Canvas & facebook" />
+    <meta property="og:type" content="Canvas App with Facebook" />
+    <meta property="og:url" content="http://tiy0311.github.io/wp2014s_hw4/" />
+    <!--meta property="og:image" content="http://ia.media-imdb.com/images/M/MV5BMTA5MzAzNTcyNjZeQTJeQWpwZ15BbWU3MDUyMzE1MTk@._V1_SY317_CR0,0,214,317_AL_.jpg" /-->
     <meta name="description" content=" ">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="css/style.css">
@@ -23,10 +27,32 @@
         </div>
         <div id="if-logged-in" style="display:none">
             <h2>This is a HTML5 Canvas Pages with Facebook</h2>
+
+            <div id="get_album">
+                <button id="get_album_btn" onClick="GetAlbum()">Get album</button>
+                <br />
+                <label for="">
+                    Please select an album: <select name="album" id="album"></select>
+                    <br />
+                    Please select a photo: <select name="photo" id="photo"></select>
+                    <br />
+                </label>
+            </div>
             <h4>This is Your Facebook Profile Picture:</h4>
             <img id="preview" src=" " crossorigin="Anonymous " alt="">
             <h4>Edit your Facebook Profile Picture here:</h4>
             <canvas width="540" height="540" id="canvas"></canvas>
+            <label for="pattern">Select Pattern:
+                <select name="pattern" id="pattern" title="pattern">
+                    <option value="img/overlayback.png">Overlay1</option>
+                    <option value="img/overlay2.png">Overlay2</option>
+                </select>
+            </label>
+            <div id="photo-info">
+                <strong id="likes-count"></strong>
+                <br />
+                <p id="photo-message"></p>
+            </div>
         </div>
     </section>
     <div id="customerized-text" class="inputtext" style="width:600px; margin:0 auto; display:none">
