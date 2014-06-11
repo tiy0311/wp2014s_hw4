@@ -9,7 +9,7 @@ window.fbAsyncInit = function () {//facebook init
     
 //輸入基本的Facebook init的狀態，與Facebook 連接，包括APP ID的設定
     FB.init({
-        appId : '699947756683654',                    // App ID from the app dashboard  // wp2014s_hw4:245512675613775  // Lab:699947756683654
+        appId : '245512675613775',                    // App ID from the app dashboard  // wp2014s_hw4:245512675613775  // Lab:699947756683654
         cookie  : true,                                 // Allowed server-side to fetch fb auth cookie
         status  : true,                                 // Check Facebook Login status
         xfbml   : true,                                 // Look for social plugins on the page
